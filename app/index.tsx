@@ -55,7 +55,7 @@ const Index: React.FC = () => {
                   <Text style={styles.signupLink}>Sign up</Text>
                 </TouchableOpacity>
               </Link>
-              <Link href={"/(tabs)/home"} asChild>
+              <Link href={"/(tabs)/report"} asChild>
                 <TouchableOpacity>
                   <Text style={styles.signupLink}>Home</Text>
                 </TouchableOpacity>

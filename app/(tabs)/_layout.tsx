@@ -1,7 +1,8 @@
-import React from "react";
+import { MaterialIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
+import React from "react";
 
-const TabsLayout = () => {
+const TabsLayout: React.FC = () => {
   return (
     <Tabs
       screenOptions={{
@@ -23,24 +24,35 @@ const TabsLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="home"
+        name="report"
         options={{
-          title: "Home",
-          tabBarLabel: "Home",
+          title: "Report",
+          tabBarLabel: "Report",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="report-problem" size={size} color={color} />
+          ),
         }}
       />
+
       <Tabs.Screen
-        name="explore"
+        name="my-issues"
         options={{
-          title: "Explore",
-          tabBarLabel: "Explore",
+          title: "My Issues",
+          tabBarLabel: "My Issues",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="assignment" size={size} color={color} />
+          ),
         }}
       />
+
       <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
           tabBarLabel: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="person" size={size} color={color} />
+          ),
         }}
       />
     </Tabs>
