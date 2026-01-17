@@ -40,7 +40,7 @@ const TabsLayout: React.FC = () => {
           title: "My Issues",
           tabBarLabel: "My Issues",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="assignment" size={size} color={color} />
+            <MaterialIcons name="assignment-add" size={size} color={color} />
           ),
         }}
       />

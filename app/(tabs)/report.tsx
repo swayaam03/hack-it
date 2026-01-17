@@ -1,12 +1,12 @@
 import { MaterialIcons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  ScrollView,
+  Image,
+  Pressable,
   StyleSheet,
   Text,
-  View,
-  Pressable,
-  Image,
+  View
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -26,6 +26,7 @@ const ISSUE_CATEGORIES: IssueCategory[] = [
 ];
 
 const Report = () => {
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
 
@@ -34,16 +35,26 @@ const Report = () => {
     console.log("Capture image");
   };
 
+  const handleCategoryPress = (categoryId: string, categoryName: string) => {
+    router.push({
+      pathname: "/report-category",
+      params: { categoryId, categoryName },
+    });
+  };
+
   const handleReportIssue = () => {
     if (!selectedCategory) {
       console.log("Please select a category");
       return;
     }
-    console.log("Reporting issue with category:", selectedCategory);
+    const category = ISSUE_CATEGORIES.find((c) => c.id === selectedCategory);
+    if (category) {
+      handleCategoryPress(selectedCategory, category.name);
+    }
   };
 
   return (
-    <SafeAreaView  style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerContent}>
@@ -70,15 +81,14 @@ const Report = () => {
       {/* Map Placeholder */}
       <View style={styles.mapPlaceholder}>
         <MaterialIcons name="map" size={64} color="#ccc" />
-        <Text style={styles.mapPlaceholderText}>Map view will be added here</Text>
+        <Text style={styles.mapPlaceholderText}>
+          Map view will be added here
+        </Text>
       </View>
 
       {/* Capture Issue Section */}
       <View style={styles.captureSection}>
-        <Pressable
-          style={styles.captureButton}
-          onPress={handleCaptureImage}
-        >
+        <Pressable style={styles.captureButton} onPress={handleCaptureImage}>
           <MaterialIcons name="camera-alt" size={20} color="#007AFF" />
           <Text style={styles.captureButtonText}>Capture Issue</Text>
         </Pressable>
@@ -95,11 +105,10 @@ const Report = () => {
           {ISSUE_CATEGORIES.map((category) => (
             <Pressable
               key={category.id}
-              onPress={() => setSelectedCategory(category.id)}
+              onPress={() => handleCategoryPress(category.id, category.name)}
               style={[
                 styles.categoryCard,
-                selectedCategory === category.id &&
-                  styles.categoryCardSelected,
+                selectedCategory === category.id && styles.categoryCardSelected,
               ]}
             >
               <View
@@ -112,9 +121,7 @@ const Report = () => {
                 <MaterialIcons
                   name={category.icon}
                   size={32}
-                  color={
-                    selectedCategory === category.id ? "#fff" : "#007AFF"
-                  }
+                  color={selectedCategory === category.id ? "#fff" : "#007AFF"}
                 />
               </View>
               <Text
