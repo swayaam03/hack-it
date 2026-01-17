@@ -38,6 +38,13 @@
             "backgroundColor": "#000000"
           }
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow access to your photos",
+          "cameraPermission": "Allow access to your camera"
+        }
       ]
     ],
     "experiments": {

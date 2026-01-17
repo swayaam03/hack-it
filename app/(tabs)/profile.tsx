@@ -1,22 +1,26 @@
-import { StyleSheet, Text, View, ScrollView, Pressable, Image } from "react-native";
 import React, { useState } from "react";
+import {
+    Image,
+    Pressable,
+    ScrollView,
+    StyleSheet,
+    Text,
+    View,
+} from "react-native";
 
 const Profile = () => {
   const [userProfile] = useState({
-    name: "John Doe",
-    email: "john.doe@example.com",
-    phone: "+1 (555) 123-4567",
+    name: "Swayam Kandarkar",
+    email: "Swayam@example.com",
+    phone: "+91 9990909090",
     avatar: "https://via.placeholder.com/120",
   });
 
   return (
-    <ScrollView style={styles.container} >
+    <ScrollView style={styles.container}>
       {/* Header with Avatar and Basic Info */}
       <View style={styles.profileHeader}>
-        <Image
-          source={{ uri: userProfile.avatar }}
-          style={styles.avatar}
-        />
+        <Image source={{ uri: userProfile.avatar }} style={styles.avatar} />
         <Text style={styles.name}>{userProfile.name}</Text>
         <Text style={styles.email}>{userProfile.email}</Text>
       </View>
@@ -24,7 +28,7 @@ const Profile = () => {
       {/* Contact Information */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Contact Information</Text>
-        
+
         <View style={styles.infoItem}>
           <Text style={styles.label}>Email</Text>
           <Text style={styles.value}>{userProfile.email}</Text>
