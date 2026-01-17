@@ -1,8 +1,9 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import { useLocalSearchParams, useRouter } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
+    Alert,
     Image,
     Pressable,
     ScrollView,
@@ -10,7 +11,6 @@ import {
     Text,
     TextInput,
     View,
-    Alert,
 } from "react-native";
 
 const ReportCategory = () => {
@@ -34,7 +34,7 @@ const ReportCategory = () => {
       if (!hasPermission) {
         Alert.alert(
           "Permission Denied",
-          "Camera permission is required to capture photos"
+          "Camera permission is required to capture photos",
         );
         return;
       }

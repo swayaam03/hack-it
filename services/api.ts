@@ -1,5 +1,5 @@
-import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const API_BASE_URL = "http://localhost:5000/api";
 
@@ -21,8 +21,18 @@ api.interceptors.request.use(async (config) => {
 
 // Auth endpoints
 export const authAPI = {
-  register: async (name: string, email: string, password: string, phone: string) => {
-    const response = await api.post("/auth/register", { name, email, password, phone });
+  register: async (
+    name: string,
+    email: string,
+    password: string,
+    phone: string,
+  ) => {
+    const response = await api.post("/auth/register", {
+      name,
+      email,
+      password,
+      phone,
+    });
     if (response.data.token) {
       await AsyncStorage.setItem("authToken", response.data.token);
     }

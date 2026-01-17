@@ -12,7 +12,14 @@ const issueSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ["Pothole", "Streetlight", "Garbage", "Water Leakage", "Roadblock", "Other"],
+      enum: [
+        "Pothole",
+        "Streetlight",
+        "Garbage",
+        "Water Leakage",
+        "Roadblock",
+        "Other",
+      ],
       required: true,
     },
     status: {
@@ -53,7 +60,7 @@ const issueSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 module.exports = mongoose.model("Issue", issueSchema);

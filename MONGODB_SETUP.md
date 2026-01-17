@@ -1,6 +1,7 @@
 # MongoDB & Backend Setup Guide
 
 ## Prerequisites
+
 - Node.js installed
 - MongoDB installed locally or MongoDB Atlas account
 - MongoDB Compass installed
@@ -10,11 +11,13 @@
 ### 1. **MongoDB Compass Connection**
 
 If you want to use **MongoDB locally**:
+
 - Open MongoDB Compass
 - Connection String: `mongodb://localhost:27017`
 - Create a new database called `civic-issues`
 
 If you want to use **MongoDB Atlas** (cloud):
+
 - Go to https://www.mongodb.com/cloud/atlas
 - Create a cluster
 - Get the connection string
@@ -23,16 +26,19 @@ If you want to use **MongoDB Atlas** (cloud):
 ### 2. **Backend Setup**
 
 Navigate to backend folder:
+
 ```bash
 cd backend
 ```
 
 Install dependencies:
+
 ```bash
 npm install
 ```
 
 Update `.env` file with your MongoDB URI:
+
 ```
 MONGODB_URI=mongodb://localhost:27017/civic-issues
 PORT=5000
@@ -41,16 +47,19 @@ JWT_SECRET=your_secret_key_here
 ```
 
 Start the backend server:
+
 ```bash
 npm start
 ```
 
 For development with auto-reload:
+
 ```bash
 npm run dev
 ```
 
 Expected output:
+
 ```
 ✅ MongoDB connected successfully
 🚀 Server running on http://localhost:5000
@@ -59,6 +68,7 @@ Expected output:
 ### 3. **Frontend Setup**
 
 Install required dependencies:
+
 ```bash
 npm install axios @react-native-async-storage/async-storage
 ```
@@ -68,6 +78,7 @@ The API service is already set up in `services/api.ts`
 ### 4. **API Endpoints**
 
 **Auth:**
+
 - `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - Login user
 - `GET /api/auth/me` - Get user profile
@@ -75,6 +86,7 @@ The API service is already set up in `services/api.ts`
 - `POST /api/auth/change-password` - Change password
 
 **Issues:**
+
 - `POST /api/issues` - Create new issue
 - `GET /api/issues` - Get all issues (with filters)
 - `GET /api/issues/user/my-issues` - Get user's issues
@@ -88,6 +100,7 @@ The API service is already set up in `services/api.ts`
 Use Postman or similar tool to test APIs:
 
 **Register:**
+
 ```
 POST http://localhost:5000/api/auth/register
 Body:
@@ -100,6 +113,7 @@ Body:
 ```
 
 **Create Issue:**
+
 ```
 POST http://localhost:5000/api/issues
 Headers:
@@ -120,9 +134,11 @@ Body:
 ### 6. **Database Schema**
 
 **Users Collection:**
+
 - name, email, password, phone, avatar, role, isActive, timestamps
 
 **Issues Collection:**
+
 - title, description, category, status, priority, location, coordinates
 - userId (reference to User), comments, timestamps
 
