@@ -10,7 +10,7 @@ const Profile = () => {
   });
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} >
       {/* Header with Avatar and Basic Info */}
       <View style={styles.profileHeader}>
         <Image
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f9f9f9",
+    paddingTop: 20,
   },
   profileHeader: {
     alignItems: "center",
