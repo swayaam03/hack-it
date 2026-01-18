@@ -55,12 +55,17 @@ const Index: React.FC = () => {
                   <Text style={styles.signupLink}>Sign up</Text>
                 </TouchableOpacity>
               </Link>
+            </View>
+
+            {/* --- MODIFIED: Subtle Centralized Home Button --- */}
+            <View style={styles.homeButtonContainer}>
               <Link href={"/(tabs)/report"} asChild>
-                <TouchableOpacity>
-                  <Text style={styles.signupLink}>Home</Text>
+                <TouchableOpacity style={styles.homeButton}>
+                  <Text style={styles.homeButtonText}>Home</Text>
                 </TouchableOpacity>
               </Link>
             </View>
+            {/* ------------------------------------------------ */}
           </View>
         </View>
       </View>
@@ -110,41 +115,6 @@ const styles = StyleSheet.create({
   formSection: {
     gap: 0,
   },
-  optionsRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 24,
-    marginTop: -4,
-  },
-  rememberContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  checkbox: {
-    width: 18,
-    height: 18,
-    borderRadius: 4,
-    borderWidth: 1.5,
-    borderColor: "#CBD5E1",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  checkboxActive: {
-    backgroundColor: "#EFF6FF",
-    borderColor: "#2563EB",
-  },
-  rememberText: {
-    fontSize: 13,
-    color: "#475569",
-    fontWeight: "500",
-  },
-  forgotPassword: {
-    fontSize: 13,
-    color: "#2563EB",
-    fontWeight: "600",
-  },
   loginButton: {
     backgroundColor: "#2563EB",
     paddingVertical: 12,
@@ -158,38 +128,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#FFFFFF",
   },
-  dividerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginVertical: 20,
-  },
-  divider: {
-    flex: 1,
-    height: 1,
-    backgroundColor: "#E2E8F0",
-  },
-  dividerText: {
-    marginHorizontal: 12,
-    color: "#94A3B8",
-    fontSize: 12,
-    fontWeight: "500",
-  },
-  socialContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    gap: 24,
-    marginBottom: 24,
-  },
-  socialButton: {
-    width: 50,
-    height: 50,
-    borderRadius: 12,
-    backgroundColor: "#F8FAFC",
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#E2E8F0",
-  },
   signupContainer: {
     flexDirection: "row",
     justifyContent: "center",
@@ -202,6 +140,26 @@ const styles = StyleSheet.create({
   signupLink: {
     fontSize: 13,
     color: "#2563EB",
+    fontWeight: "600",
+  },
+ 
+  homeButtonContainer: {
+    marginTop: 20,
+    alignItems: "center",
+  },
+  homeButton: {
+    backgroundColor: "#F8FAFC", 
+    borderWidth: 1,
+    borderColor: "#E2E8F0", 
+    paddingVertical: 10,
+    paddingHorizontal: 24,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  homeButtonText: {
+    color: "#64748B", 
+    fontSize: 14,
     fontWeight: "600",
   },
 });
