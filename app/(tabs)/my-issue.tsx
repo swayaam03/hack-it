@@ -2,13 +2,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
 import {
-    FlatList,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  FlatList,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 
 interface Issue {
@@ -229,38 +229,6 @@ const MyIssues = () => {
         />
       </View>
 
-      {/* Filter and Sort Controls */}
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.controlsSection}
-        contentContainerStyle={styles.controlsContent}
-      >
-        {/* Status Filter */}
-        {(
-          ["all", "open", "in-progress", "resolved", "closed"] as StatusFilter[]
-        ).map((filter) => (
-          <Pressable
-            key={filter}
-            onPress={() => setStatusFilter(filter)}
-            style={[
-              styles.filterButton,
-              statusFilter === filter && styles.filterButtonActive,
-            ]}
-          >
-            <Text
-              style={[
-                styles.filterButtonText,
-                statusFilter === filter && styles.filterButtonTextActive,
-              ]}
-            >
-              {filter.charAt(0).toUpperCase() +
-                filter.slice(1).replace("-", " ")}
-            </Text>
-          </Pressable>
-        ))}
-      </ScrollView>
-
       {/* Sort Options */}
       <View style={styles.sortSection}>
         <Text style={styles.sortLabel}>Sort by:</Text>
@@ -389,16 +357,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#f9f9f9",
   },
   header: {
-    backgroundColor: "#fff",
+    backgroundColor: "#007AFF",
     paddingHorizontal: 20,
     paddingVertical: 15,
     borderBottomWidth: 1,
     borderBottomColor: "#e0e0e0",
+    marginTop: 37,
   },
   headerTitle: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#333",
+    color: "#fff",
   },
   searchSection: {
     backgroundColor: "#fff",

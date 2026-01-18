@@ -1,7 +1,9 @@
 import { MaterialIcons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
+  Alert,
   Image,
   Pressable,
   ScrollView,
@@ -18,9 +20,30 @@ const ReportCategory = () => {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
 
-  const handleCaptureImage = () => {
-    // Handle camera capture here
-    console.log("Capture image for", categoryName);
+  const handleCaptureImage = async () => {
+    // Request camera permissions
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    
+    if (status !== "granted") {
+      Alert.alert(
+        "Permission Denied",
+        "Camera permission is required to take photos. Please enable it in your device settings.",
+        [{ text: "OK" }]
+      );
+      return;
+    }
+
+    // Launch camera
+    const result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 0.8,
+    });
+
+    if (!result.canceled && result.assets[0]) {
+      setCapturedImage(result.assets[0].uri);
+    }
   };
 
   const handleSubmitReport = () => {
@@ -158,6 +181,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#007AFF",
     paddingVertical: 20,
     paddingHorizontal: 20,
+    marginTop: 30,
   },
   headerContent: {
     flexDirection: "row",

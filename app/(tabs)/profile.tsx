@@ -15,14 +15,14 @@ const Profile = () => {
     name: "Rajesh Kumar",
     email: "rajesh@example.com",
     phone: "+91 9999999999",
-    avatar: "https://via.placeholder.com/120",
+    avatar: require("../assests/avatar.png"),
   });
 
   return (
     <ScrollView style={styles.container}>
       {/* Header with Avatar and Basic Info */}
       <View style={styles.profileHeader}>
-        <Image source={{ uri: userProfile.avatar }} style={styles.avatar} />
+        <Image source={userProfile.avatar} style={styles.avatar} />
         <Text style={styles.name}>{userProfile.name}</Text>
         <Text style={styles.email}>{userProfile.email}</Text>
       </View>
