@@ -10,7 +10,6 @@ import {
     TextInput,
     View,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 interface Issue {
   id: string;
@@ -207,7 +206,7 @@ const MyIssues = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>My Issues</Text>
@@ -229,6 +228,38 @@ const MyIssues = () => {
           placeholderTextColor="#999"
         />
       </View>
+
+      {/* Filter and Sort Controls */}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.controlsSection}
+        contentContainerStyle={styles.controlsContent}
+      >
+        {/* Status Filter */}
+        {(
+          ["all", "open", "in-progress", "resolved", "closed"] as StatusFilter[]
+        ).map((filter) => (
+          <Pressable
+            key={filter}
+            onPress={() => setStatusFilter(filter)}
+            style={[
+              styles.filterButton,
+              statusFilter === filter && styles.filterButtonActive,
+            ]}
+          >
+            <Text
+              style={[
+                styles.filterButtonText,
+                statusFilter === filter && styles.filterButtonTextActive,
+              ]}
+            >
+              {filter.charAt(0).toUpperCase() +
+                filter.slice(1).replace("-", " ")}
+            </Text>
+          </Pressable>
+        ))}
+      </ScrollView>
 
       {/* Sort Options */}
       <View style={styles.sortSection}>
@@ -346,7 +377,7 @@ const MyIssues = () => {
           </Text>
         </View>
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 

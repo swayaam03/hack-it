@@ -1,18 +1,20 @@
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    Image,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    View,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 
 const Profile = () => {
+  const router = useRouter();
   const [userProfile] = useState({
-    name: "Swayam Kandarkar",
-    email: "Swayam@example.com",
-    phone: "+91 9990909090",
+    name: "Rajesh Kumar",
+    email: "rajesh@example.com",
+    phone: "+91 9999999999",
     avatar: "https://via.placeholder.com/120",
   });
 
@@ -43,26 +45,6 @@ const Profile = () => {
       {/* Account Settings */}
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Account Settings</Text>
-
-        <Pressable
-          style={({ pressed }) => [
-            styles.menuItem,
-            pressed && styles.menuItemPressed,
-          ]}
-        >
-          <Text style={styles.menuItemText}>Edit Profile</Text>
-          <Text style={styles.menuItemArrow}>›</Text>
-        </Pressable>
-
-        <Pressable
-          style={({ pressed }) => [
-            styles.menuItem,
-            pressed && styles.menuItemPressed,
-          ]}
-        >
-          <Text style={styles.menuItemText}>Change Password</Text>
-          <Text style={styles.menuItemArrow}>›</Text>
-        </Pressable>
 
         <Pressable
           style={({ pressed }) => [
@@ -112,7 +94,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f9f9f9",
-    paddingTop: 20,
+    paddingTop: 30,
   },
   profileHeader: {
     alignItems: "center",

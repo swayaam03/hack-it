@@ -1,16 +1,14 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import * as ImagePicker from "expo-image-picker";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    Alert,
-    Image,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 
 const ReportCategory = () => {
@@ -20,71 +18,16 @@ const ReportCategory = () => {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
 
-  // Request camera permissions
-  const requestCameraPermission = async () => {
-    const { status } = await ImagePicker.requestCameraPermissionsAsync();
-    return status === "granted";
-  };
-
-  // Open camera and capture image
-  const handleCaptureImage = async () => {
-    try {
-      const hasPermission = await requestCameraPermission();
-
-      if (!hasPermission) {
-        Alert.alert(
-          "Permission Denied",
-          "Camera permission is required to capture photos",
-        );
-        return;
-      }
-
-      const result = await ImagePicker.launchCameraAsync({
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      });
-
-      if (!result.canceled && result.assets[0]) {
-        setCapturedImage(result.assets[0].uri);
-        console.log("Image captured:", result.assets[0].uri);
-      }
-    } catch (error) {
-      console.error("Error capturing image:", error);
-      Alert.alert("Error", "Failed to capture image. Please try again.");
-    }
+  const handleCaptureImage = () => {
+    // Handle camera capture here
+    console.log("Capture image for", categoryName);
   };
 
   const handleSubmitReport = () => {
-    if (!capturedImage) {
-      Alert.alert("Photo Required", "Please capture a photo of the issue");
-      return;
-    }
-
-    if (!location.trim()) {
-      Alert.alert("Location Required", "Please enter the location details");
-      return;
-    }
-
-    if (!description.trim()) {
-      Alert.alert("Description Required", "Please describe the issue");
-      return;
-    }
-
     console.log("Submitting report for:", categoryName);
-    console.log("Image:", capturedImage);
-    console.log("Location:", location);
     console.log("Description:", description);
-
-    Alert.alert("Success", "Your report has been submitted successfully!", [
-      {
-        text: "OK",
-        onPress: () => {
-          router.back();
-        },
-      },
-    ]);
+    console.log("Location:", location);
+    router.back();
   };
 
   const getCategoryIcon = (
